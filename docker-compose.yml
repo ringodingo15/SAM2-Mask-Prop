@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  sam2-mask-prop:
+    build: .
+    image: sam2-mask-prop:latest
+    ports:
+      - "8000:8000"
+    environment:
+      - DEVICE=cuda
+      - SAM2_MODEL_TYPE=${SAM2_MODEL_TYPE:-sam2.1_hiera_large}
+      - SAM2_CHECKPOINT=${SAM2_CHECKPOINT:-/app/checkpoints/sam2.1_hiera_large.pt}
+      - DATA_ROOT=/app/data
+    volumes:
+      - ./data:/app/data
+      - ./checkpoints:/app/checkpoints
+      - ./.env:/app/.env
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+    runtime: nvidia

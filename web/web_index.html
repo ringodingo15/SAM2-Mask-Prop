@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SAM2 Mask Prop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/styles.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <h1>SAM2 Mask Prop</h1>
+
+    <section class="card">
+      <h2>1. Create Job</h2>
+      <button id="btn-new-job">Create New Job</button>
+      <div id="job-info"></div>
+    </section>
+
+    <section class="card">
+      <h2>2. Upload Video or Frames ZIP</h2>
+      <div>
+        <input type="file" id="video-file" accept="video/*" />
+        <button id="btn-upload-video">Upload Video</button>
+      </div>
+      <div class="hint">OR</div>
+      <div>
+        <input type="file" id="frames-zip" accept=".zip" />
+        <button id="btn-upload-frames">Upload Frames ZIP</button>
+      </div>
+      <div id="frames-status"></div>
+    </section>
+
+    <section class="card">
+      <h2>3. Upload Label Studio JSON</h2>
+      <input type="file" id="ls-json" accept=".json" />
+      <button id="btn-upload-ls">Upload LS Export</button>
+      <div class="hint">See <a href="/docs/LabelStudio.md" target="_blank">LabelStudio.md</a> for export details.</div>
+      <div id="ls-status"></div>
+    </section>
+
+    <section class="card">
+      <h2>4. Run Propagation</h2>
+      <label>
+        Labels mode:
+        <select id="labels-mode">
+          <option value="composite" selected>Composite</option>
+          <option value="per_label">Per Label</option>
+        </select>
+      </label>
+      <button id="btn-propagate">Start Propagation</button>
+      <div id="progress"></div>
+    </section>
+
+    <section class="card">
+      <h2>5. Preview and Export</h2>
+      <div class="viewer">
+        <div class="frames">
+          <img id="frame-img" />
+          <img id="mask-img" class="overlay" />
+        </div>
+        <div class="controls">
+          <button id="prev-frame">Prev</button>
+          <span id="frame-idx">0 / 0</span>
+          <button id="next-frame">Next</button>
+          <button id="btn-export">Download Masks ZIP</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
